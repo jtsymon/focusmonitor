@@ -2,12 +2,19 @@
 #include <stdio.h>
 #include <X11/Xlib.h>
 
+int catcher(Display *d, XErrorEvent *e) {
+    // avoids terminating on error
+    return 0;
+}
+
 int main() {
     Display *d = XOpenDisplay(0);
     if (!d) {
         fprintf(stderr, "Could not open display\n");
         return 1;
     }
+
+    XSetErrorHandler(catcher);
 
     XSelectInput(d, DefaultRootWindow(d), PropertyChangeMask);
 
