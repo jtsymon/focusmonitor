@@ -16,7 +16,8 @@ int main() {
 
     XSetErrorHandler(catcher);
 
-    XSelectInput(d, DefaultRootWindow(d), PropertyChangeMask);
+    Window root = DefaultRootWindow(d);
+    XSelectInput(d, root, PropertyChangeMask);
 
     XEvent e;
     Window w = 0;
@@ -41,7 +42,9 @@ int main() {
                 )
         );
         // stop listening for events on the active window
-        XSelectInput(d, w, NoEventMask);
+        if (w != root) {
+            XSelectInput(d, w, NoEventMask);
+        }
     }
     return 0;
 }
