@@ -29,7 +29,7 @@ int main() {
         XGetInputFocus(d, &w, &revert_to);
         // also listen for events on the active window
         XSelectInput(d, w, PropertyChangeMask);
-        printf("%llu\n", (int)w);
+        printf("%lu\n", w);
         // wait for next event
         do {
             XNextEvent(d, &e);
