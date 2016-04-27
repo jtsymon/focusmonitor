@@ -38,7 +38,8 @@ int main() {
                 !(atom = XGetAtomName(d, e.xproperty.atom)) ||
                 (
                  strcmp(atom, "_NET_ACTIVE_WINDOW") &&
-                 strcmp(atom, "WM_ICON_NAME")
+                 strcmp(atom, "WM_ICON_NAME") &&
+                 strcmp(atom, "_NET_WM_NAME")
                 )
         );
         // stop listening for events on the active window
